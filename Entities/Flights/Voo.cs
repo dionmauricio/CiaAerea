@@ -1,4 +1,5 @@
 using CiaAerea.Entities.Aircraft;
+using CiaAerea.Entities.Cancellations;
 using CiaAerea.Entities.Pilots;
 
 namespace CiaAerea.Entities.Flights;
@@ -30,4 +31,5 @@ public class Voo
     public int PilotoId { get; set; }
     public Aeronave Aeronave { get; set; } = null!;
     public Piloto Piloto { get; set; } = null!;
+    public Cancelamento? Cancelamento { get; set; }
 }
