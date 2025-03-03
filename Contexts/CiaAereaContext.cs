@@ -3,6 +3,11 @@ using CiaAerea.Entities.Cancellations;
 using CiaAerea.Entities.Flights;
 using CiaAerea.Entities.Maintenance;
 using CiaAerea.Entities.Pilots;
+using CiaAerea.EntityConfigurations.Aircraft;
+using CiaAerea.EntityConfigurations.Cancellations;
+using CiaAerea.EntityConfigurations.Flights;
+using CiaAerea.EntityConfigurations.Maintenance;
+using CiaAerea.EntityConfigurations.Pilots;
 using Microsoft.EntityFrameworkCore;
 
 namespace CiaAerea.Contexts;
@@ -27,5 +32,16 @@ public class CiaAereaContext : DbContext
         optionsBuilder.UseNpgsql(_configuration.GetConnectionString("CiaAerea"));
 
         base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new AeronaveConfiguration());
+        modelBuilder.ApplyConfiguration(new PilotoConfiguration());
+        modelBuilder.ApplyConfiguration(new VooConfiguration());
+        modelBuilder.ApplyConfiguration(new CancelamentoConfiguration());
+        modelBuilder.ApplyConfiguration(new ManutencaoConfiguration());
+
+        base.OnModelCreating(modelBuilder);
     }
 }
