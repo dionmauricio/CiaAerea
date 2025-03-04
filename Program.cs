@@ -1,4 +1,5 @@
 using CiaAerea.Contexts;
+using CiaAerea.Services.Aircraft;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<CiaAereaContext>();
+builder.Services.AddTransient<AeronaveService>();
 
 var app = builder.Build();
 
